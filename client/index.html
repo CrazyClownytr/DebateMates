@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple UI</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="client.js" defer type="module"></script>
+</head>
+<body>
+  <div class="container">
+    <form id="debateForm">
+      <label for="statementInput">Vul een stelling in:</label>
+      <input type="text" id="statementInput" placeholder="Bijv. AI moet huiswerk maken toegestaan zijn" required />
+      <button type="submit">Start Debat</button>
+    </form>
+  
+    <div id="debateResult" class="debate-grid">
+      <!-- Hier komen de Pro/Contra statements -->
+    </div>
+  
+    <div class="winner-section" style="display: none;">
+      <h3>Wie won het debat?</h3>
+      <button id="votePro">🟢 ProBot</button>
+      <button id="voteContra">🔴 ContraBot</button>
+      <p id="thanksVote" style="margin-top: 10px;"></p>
+    </div>
+  </div>
+  
+</body>
+</html>
