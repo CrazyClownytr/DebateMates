@@ -5,7 +5,9 @@ const voteSection = document.querySelector(".winner-section");
 const votePro = document.getElementById("votePro");
 const voteContra = document.getElementById("voteContra");
 const thanksVote = document.getElementById("thanksVote");
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async (e) => debateAI(e));
+
+async function debateAI(e) {
     e.preventDefault();
     const statement = input.value;
     result.innerHTML = "";
@@ -38,7 +40,7 @@ form.addEventListener("submit", async (e) => {
       buffer += decoder.decode(value, { stream: true });
   
       const parts = buffer.split("\n\n");
-      buffer = parts.pop(); // Laatste incomplete deel bewaren
+      buffer = parts.pop();
   
       for (let part of parts) {
         if (part.startsWith("event: role")) {
@@ -56,7 +58,7 @@ form.addEventListener("submit", async (e) => {
         }
       }
     }
-  });
+  };
   
 
 votePro.addEventListener("click", () => {
@@ -65,3 +67,38 @@ votePro.addEventListener("click", () => {
 voteContra.addEventListener("click", () => {
   thanksVote.innerText = "✅ Je hebt gestemd voor ContraBot!";
 });
+
+
+const docForm = document.getElementById("docForm");
+if (docForm) {
+  const field = document.getElementById("userInput");
+  const endresult = document.getElementById("result");
+
+  docForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    endresult.innerHTML = "";
+  
+    const response = await fetch("http://localhost:3000/docs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: field.value })
+    });
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+  
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+  
+      const chunk = decoder.decode(value, { stream: true });
+      console.log(chunk);
+      endresult.innerHTML += chunk;
+    }
+  });
+  
+}
+
+
+
+

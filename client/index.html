@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple UI</title>
+  <title>AIDebateMates</title>
   <link rel="stylesheet" href="style.css" />
   <script src="client.js" defer type="module"></script>
 </head>
@@ -25,7 +25,19 @@
       <button id="voteContra">🔴 ContraBot</button>
       <p id="thanksVote" style="margin-top: 10px;"></p>
     </div>
+
+    <section id="doc-search">
+      <h2>Document Zoekfunctie</h2>
+      <form id="docForm">
+        <input id="userInput" placeholder="Waar wil je op zoeken?" />
+        <button id="submitButton">Zoek</button>
+      </form>
+      <div id="result"></div>
+    </section>
   </div>
+
+ 
+  
   
 </body>
 </html>
