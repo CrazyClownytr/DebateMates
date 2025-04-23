@@ -1,17 +1,16 @@
-# 🧠 AI Debat Generator met LangChain & Azure OpenAI
+# AIDebatMates met LangChain & Azure OpenAI
 
 Een full-stack AI-applicatie waarmee gebruikers een stelling kunnen invoeren en een automatisch debat krijgen tussen twee bots: ProBot (voor) en ContraBot (tegen). Gebruikt LangChain, Azure OpenAI en FAISS vector stores.
 
-## 🗂️ Projectstructuur
+## Projectstructuur
 /client      --> Front-end (HTML, CSS, JS)
 /server      --> Back-end met Express en LangChain
-/public      --> Bevat `wwe-text.txt` voor embeddings
+/public      --> Bevat `wwe-text.txt` en `document.pdf` voor embeddings
 
-## ⚙️ Installatie
+## Installatie
 
 ### 1. Clone de repo
 
-```bash
 git clone https://github.com/CrazyClownytr/AIDebateMates.git
 cd AIDebateMates
 
@@ -33,9 +32,9 @@ AZURE_DEPLOYMENT_NAME=your-deployment-name
 AZURE_EMBEDDING_DEPLOYMENT_NAME=your-embedding-deployment
 
 
-> ⚠️ Voeg `.env` toe aan je `.gitignore` zodat deze niet gepusht wordt naar GitHub.
+> Voeg `.env` toe aan je `.gitignore` zodat deze niet gepusht wordt naar GitHub.
 
-## ▶️ Run het project
+## Run het project
 
 ### 1. Vector Store genereren (eenmalig)
 
@@ -56,9 +55,8 @@ Open `/client/index.html` in je browser. Gebruik eventueel Live Server (bijv. vi
 ## Functies
 
 - AI-debat met meerdere rondes tussen ProBot & ContraBot
-- Contextueel antwoorden via vectorstore en tekstdocument (`wwe-text.txt`)
-- Stem wie het debat wint
-- Ondersteunt ook algemene AI-vragen en grappen (optioneel via `/ask` of `/joke` routes)
+- Contextueel antwoorden via vectorstore en tekstdocument (`document.pdf`)
+- Stem welke jouw het meest overtuigd
 
 ## Mogelijke issues
 
