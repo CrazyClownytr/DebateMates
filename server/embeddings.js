@@ -3,6 +3,10 @@ import { TextLoader } from "langchain/document_loaders/fs/text";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 // import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import {FaissStore} from "@langchain/community/vectorstores/faiss";
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
+import "dotenv/config";
+
+
 
 
 const model = new AzureChatOpenAI({temperature: 1});
@@ -25,15 +29,18 @@ let vectorStore
 
 //maar 1 keer hoeven te doen om text te zetten in database
 async function createVectorstore() {
-    const loader = new TextLoader("./public/wwe-text.txt");
+    //const loader = new TextLoader("./public/wwe-text.txt");
+    const loader = new PDFLoader("./public/document.pdf");
     const docs = await loader.load();
+    
     const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 500, chunkOverlap: 50 });
     const splitDocs = await textSplitter.splitDocuments(docs);
 
     //vector database
     console.log(`Document split into ${splitDocs.length} chunks. Now saving into vector store`);
     vectorStore = await FaissStore.fromDocuments(splitDocs, embeddings);
-    await vectorStore.save("text-embeddingsdb");
+    // await vectorStore.save("text-embeddingsdb");
+    await vectorStore.save("pdf-embeddingsdb");
     console.log("Vector store created");
 }
 

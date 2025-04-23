@@ -7,7 +7,8 @@ const embeddings = new AzureOpenAIEmbeddings({
     azureOpenAIApiEmbeddingsDeploymentName: process.env.AZURE_EMBEDDING_DEPLOYMENT_NAME
 });
 
-let vectorStore = await FaissStore.load("text-embeddingsdb", embeddings);
+// let vectorStore = await FaissStore.load("text-embeddingsdb", embeddings);
+let vectorStore = await FaissStore.load("pdf-embeddingsdb", embeddings);
 
 async function askQuestion(prompt){
     const relevantDocs = await vectorStore.similaritySearch(prompt,3);
@@ -21,5 +22,5 @@ async function askQuestion(prompt){
 }
 
 // await createVectorstore()
-let answer = await askQuestion("who is the hero of this story?") //dit is de vraag die je stelt aan de vectorstore
+let answer = await askQuestion("who is the main character of this story?") //dit is de vraag die je stelt aan de vectorstore
 console.log(answer)
